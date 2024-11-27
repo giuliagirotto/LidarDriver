@@ -30,6 +30,11 @@ std::vector<double>LidarDriver::get_scan(){ //recupero e rimuovo la scansione pi
 
     std::vector<double>oldest_scan = buffer.front();
     buffer.erase(buffer.begin()); //rimuovo la scansione più vecchia
+    
+    for (const double& dis : oldest_scan) {// stampa scansione da eliminare.
+        std::cout << dis << ", ";
+    }
+    
     return oldest_scan;
 }
 
