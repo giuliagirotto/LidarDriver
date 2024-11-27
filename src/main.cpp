@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "LidarDriver.h"
+#include "lidar_driver.h"
 
 int main(){
     //oggetto LidarDriver con risoluzione angolare di 1°
