@@ -15,7 +15,7 @@ int main(){
     //stampo ultima scansione
     std::cout<<"Ultima scansione: "<<lidar;
 
-    //Elimina prima scansione, e stampa i suoi valori.
+    //elimina la piu vecchia scansione dal buffer, salvandone i contenuti
     lidar.get_scan();
 
     lidar.clear_buffer();
