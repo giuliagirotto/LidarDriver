@@ -24,7 +24,7 @@ int main(){
     //lettura di un angolo specificato
     double angle=2;
     std::cout<<"distanza associata all'angolo"<<angle<<"->"<<lidar.get_distance(angle); 
-    std::cout<<"Ultima scansione: "<<lidar; 
+    std::cout<<"\nUltima scansione: "<<lidar; 
     
 
 
