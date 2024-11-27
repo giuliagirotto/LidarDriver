@@ -22,7 +22,7 @@ public:
 
 
 private:
-    std::vector<<std::vector<double>> buffer;   //buffer con scansioni
+    std::vector<std::vector<double>> buffer;   //buffer con scansioni
     int resolution; //risoluzione angolare in gradi
 };
 
