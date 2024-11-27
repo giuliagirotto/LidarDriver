@@ -1,7 +1,7 @@
 #include "lidar_driver.h"
 #include <iostream>
 
-LidarDriver::LidarDriver(int res):resolution(res){
+LidarDriver::LidarDriver(double res):resolution(res){
     if(res <=0){ //caso in cui la risoluzione risulta negativa
         throw std::invalid_argument("La risoluzione deve essere positiva");
     }
