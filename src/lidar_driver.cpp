@@ -1,4 +1,4 @@
-#include "LidarDriver.h"
+#include "lidar_driver.h"
 #include <iostream>
 
 LidarDriver::LidarDriver(int res):resolution(res){
