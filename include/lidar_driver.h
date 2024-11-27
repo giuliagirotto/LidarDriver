@@ -14,7 +14,7 @@ public:
     
     std::vector<double> get_scan();             //recupera scansione più vecchia
 
-    double get_distance(double angolo);     //dà valore della distanza per un certo angolo
+    double get_distance(double angle);     //dà valore della distanza per un certo angolo
     
     void clear_buffer();    //cancella tutte le scansioni nel buffer
 
