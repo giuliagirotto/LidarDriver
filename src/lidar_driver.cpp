@@ -66,7 +66,7 @@ double LidarDriver::get_distance(double angle)const{
 std :: ostream& operator <<(std::ostream& os, const LidarDriver& driver){
     os << "LidarDriver Buffer:\n";
     for (size_t i = 0; i < driver.buffer.size(); ++i){
-        os << "Scan " << i + 1;
+        os << "Scan " << i + 1<< ": ";
         for (const double& value : driver.buffer[i]){
             os << value << " ";
         }
