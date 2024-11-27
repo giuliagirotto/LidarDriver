@@ -18,7 +18,7 @@ public:
     
     void clear_buffer();    //cancella tutte le scansioni nel buffer
 
-    over std::ostream& operator<<(std::ostream& os, const LidarDriver& driver); //overloading dell'operatore << che stampa la scansione più recente DA FARE
+    over std::ostream& operator<<(std::ostream& os, const LidarDriver& driver); //overloading dell'operatore << che stampa la scansione più recente
 
 
 private:

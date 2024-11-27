@@ -44,21 +44,21 @@ double LidarDriver::get_distance(double angle)const{
         throw std::runtime_error("Non ci sono scansioni disponibili");
     }
 
-    if(angle < -180.0 || angle > 180.0){ //caso in cui l'angolo non sia compreso nel range [-180,180]
-        throw std::out_of_range("L'angolo deve essere compreso tra -180 e 180 gradi"); 
+    if(angle < 0 || angle > 180.0){ //caso in cui l'angolo non sia compreso nel range [0,180]
+        throw std::out_of_range("L'angolo deve essere compreso tra 0 e 180 gradi"); 
     }
 
     // indice corrispondente all'angolo
-    int index = static_cast<int>((angle + 180.0) / resolution);
+    int index = static_cast<int>((angle) / resolution);
 
-    // scansione più recente
+    
+    // Se l'indice è fuori dai limiti, troveremo l'angolo più vicino
+    if (index < 0) index = 0;  // Limitiamo l'indice minimo a 0
+    if (index >= static_cast<int>(buffer.back().size())) index = buffer.back().size() - 1;  // Limite superiore
+
+    // Scansione più recente
     const std::vector<double>& latest_scan = buffer.back();
-
-    if (index >= static_cast<int>(latest_scan.size())) {
-        throw std::out_of_range("Indice fuori dai limiti della scansione");
-    }
-
-    return latest_scan[index];
+    return latest_scan[index];  //lettura corrispondente all'indice calcolato
 }
 
 //overloading di <<
