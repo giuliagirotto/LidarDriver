@@ -58,7 +58,7 @@ double LidarDriver::get_distance(double angle)const{
 
     // Scansione più recente
     const std::vector<double>& latest_scan = buffer.back();
-    return latest_scan[index];  //lettura corrispondente all'indice calcolato
+    return latest_scan[index-1];  //lettura corrispondente all'indice calcolato
 }
 
 //overloading di <<
