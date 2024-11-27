@@ -9,7 +9,7 @@ int main(){
     //aggiungo scansione
     std::vector<double>scan={1.01, 1.10, 1.65, 1.45, 1.3, 0.98, 0.9, 0.88, 0.75};
     lidar.new_scan(scan); 
-    std::vector<double>scan={1.01, 1.10, 1.65, 1.45, 1.3, 0.98, 0.9, 0.88, 0.75};
+    std::vector<double>scan={1.56, 0.7, 1.05, 0.87, 1.1, 0.54, 1.18, 0.99, 1.75};
     lidar.new_scan(scan); 
 
     //stampo ultima scansione
