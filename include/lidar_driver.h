@@ -26,4 +26,4 @@ private:
     int resolution; //risoluzione angolare in gradi
 };
 
-#endif #LIDAR_DRIVER_H
+#endif
