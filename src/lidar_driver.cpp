@@ -3,7 +3,8 @@
 
 LidarDriver::LidarDriver(int res):resolution(res){
     if(res <=0){ //caso in cui la risoluzione risulta negativa
-        throw stf::invalid_argument("La risoluzione deve essere positiva");
+        throw std::invalid_argument("La risoluzione deve essere positiva");
+    }
 }
 
 void LidarDriver::new_scan(const std::vector<double>& scan){
@@ -11,22 +12,22 @@ void LidarDriver::new_scan(const std::vector<double>& scan){
     if(buffer.size()==BUFFER_DIM) {
         buffer.erase(buffer.begin());
     }
+
+    std::vector<double> new_scan=scan;      //aggiungo la nuova scansione
+
+    int val_max=1+180/resolution;       //numero di valori massimi per ciascuna scansione
+
+    if(new_scan.size()<val_max){
+        new_scan.resize(val_max, 0.0);  //completo con 0 se il valore è più piccolo
+    }else if(new_scan.size()>val_max){
+        new_scan.resize(val_max);   //taglio se è il valore massimo
+    }
+    buffer.push_back(new_scan); //aggiungo il nuovo scanner al buffer
 }
-
-std::vector<double> new_scan=scan;      //aggiungo la nuova scansione
-
-int val_max=1+180/resolution;       //numero di valori massimi per ciascuna scansione
-
-if(new_scan.size()<val_max){
-    new_scan.resize(val_max, 0.0);  //completo con 0 se il valore è più piccolo
-}else if(new_scan.size()>val_max){
-    new_scan.resize(val_max);   //taglio se è il valore massimo
-}
-buffer.push_back(new_scan); //aggiungo il nuovo scanner al buffer
 
 std::vector<double>LidarDriver::get_scan(){ //recupero e rimuovo la scansione più vecchia
     if(buffer.empty()) return{};    //se non ci sono scansioni, restituisce un vector vuoto
-    }
+
     std::vector<double>oldest_scan = buffer.front();
     buffer.erase(buffer.begin()); //rimuovo la scansione più vecchia
     return oldest_scan;
@@ -34,7 +35,7 @@ std::vector<double>LidarDriver::get_scan(){ //recupero e rimuovo la scansione pi
 
 //rimuove tutte le scansioni dal buffer
 void LidarDriver::clear_buffer(){
-    buffer.clear()      
+    buffer.clear();     
 }
 
 //stampa la distanza di un angolo specifico in base alla scansione più recente
@@ -47,12 +48,22 @@ double LidarDriver::get_distance(double angle)const{
         throw std::out_of_range("L'angolo deve essere compreso tra -180 e 180 gradi"); 
     }
 
-    //...
+    // indice corrispondente all'angolo
+    int index = static_cast<int>((angle + 180.0) / resolution);
+
+    // scansione più recente
+    const std::vector<double>& latest_scan = buffer.back();
+
+    if (index >= static_cast<int>(latest_scan.size())) {
+        throw std::out_of_range("Indice fuori dai limiti della scansione");
+    }
+
+    return latest_scan[index];
 }
 
 //overloading di <<
 //stampa il contenuto di "LidarDriver Buffer" 
-std :: ostream& operator <<(std::osteam& os, const LidarDriver& driver){
+std :: ostream& operator <<(std::ostream& os, const LidarDriver& driver){
     os << "LidarDriver Buffer:\n";
     for (size_t i = 0; i < driver.buffer.size(); ++i){
         os << "Scan " << i + 1;
