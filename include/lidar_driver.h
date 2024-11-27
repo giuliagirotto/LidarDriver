@@ -8,7 +8,7 @@ const int BUFFER_DIM=10;    //definisco la dimensione del buffer (es. 10 scansio
 
 class LidarDriver{
 public:
-    LidarDriver(int res);       //costruttore che imposta risoluzione angolare
+    LidarDriver(double res);       //costruttore che imposta risoluzione angolare
     
     void new_scan(const std::vector<double>& scan);     //aggiunge nuova scansione al buffer
     
@@ -23,7 +23,7 @@ public:
 
 private:
     std::vector<std::vector<double>> buffer;   //buffer con scansioni
-    int resolution; //risoluzione angolare in gradi
+    double resolution; //risoluzione angolare in gradi
 };
 
 #endif
